@@ -5,7 +5,7 @@ public class Account {
     private String ownerName;
     private double balance;
     private Card card;
-    private double loanAmount;
+    private Loan loan;
     private double salary;
 
     public void deposit(double amount) {
@@ -62,14 +62,25 @@ public class Account {
         }
     }
 
+    public void payChecks(double amount) {
+        if (amount >= loan.getMonthlyPayment()) {
+            this.balance -= amount;
+            double newLoanAmount = loan.getAmount() - amount;
+            loan.setAmount(newLoanAmount);
+        } else {
+            System.out.println("Not enough money to pay");
+        }
+    }
+
     @Override
     public String toString() {
         return "Account{" +
-                "id = " + id +
-                ", ownerName = '" + ownerName + '\'' +
-                ", balance = " + balance +
-                ", \n card = " + card +
-                ", loanAmount = " + loanAmount +
+                "id=" + id +
+                ", ownerName='" + ownerName + '\'' +
+                ", balance=" + balance +
+                ", card=" + card +
+                ", loan=" + loan +
+                ", salary=" + salary +
                 '}';
     }
 
@@ -112,19 +123,19 @@ public class Account {
         this.card = card;
     }
 
-    public double getLoanAmount() {
-        return loanAmount;
-    }
-
-    public void setLoanAmount(double loanAmount) {
-        this.loanAmount = loanAmount;
-    }
-
     public double getSalary() {
         return salary;
     }
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public Loan getLoan() {
+        return loan;
+    }
+
+    public void setLoan(Loan loan) {
+        this.loan = loan;
     }
 }

@@ -9,7 +9,11 @@ public class Bank {
         account.setBalance(accountMoney + amount);
 
         double loanAmount = amount + amount * interestRate * years;
-        account.setLoanAmount(loanAmount);
+        Loan loan = new Loan();
+        loan.setYears(years);
+        loan.setAmount(loanAmount);
+        loan.setMonthlyPayment((amount + amount * interestRate * years) / (years * 12));
+        account.setLoan(loan);
     }
 
     public void checkForPayabilityAndGiveLoan(double amount, int years, Account account) {

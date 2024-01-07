@@ -14,6 +14,7 @@ public class Main {
 
         kaspi.checkForPayabilityAndGiveLoan(30000d, 6, account1);
         jusan.checkForPayabilityAndGiveLoan(1000000d, 10, account2);
+        account1.payChecks(66000);
         System.out.println(account1);
         System.out.println(account2);
     }
